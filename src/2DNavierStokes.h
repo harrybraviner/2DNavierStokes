@@ -8,7 +8,7 @@
 #include "problem.h"
 
 #define NTOTAL_COMPLEX	NX*(NY/2 + 1)	// number of complex points of data in Fourier space
-#define IDX2D	i*NY + j
+#define IDX2D	i*(NY/2 + 1) + j
 
 struct Field {	// Structure holding pointers to velocity fields. Could be updated later with other variables
 	double complex *vx, *vy;

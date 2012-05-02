@@ -12,11 +12,9 @@ void initialiseField(struct Field *fld){
 	fld->vy = (complex*)fftw_malloc(sizeof(complex)*NTOTAL_COMPLEX);
 
 	for(i=0; i<NX; i++){	// loop over k_x
-		for(j=0; j<NY/2+1; j++){
+		for(j=0; j<NY/2+1; j++){	// loop over k_y
 			fld->vx[IDX2D] = 0.0;
 			fld->vy[IDX2D] = 0.0;
-			fprintf(stdout,"%d\n",IDX2D);
-			// FIXME - I don't think that this is running through the correct values!
 		}
 	}
 }
