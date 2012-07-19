@@ -6,4 +6,6 @@
 
 #define	NU	1	//	Kinematic viscosity
 
+#define T_FINAL	10
+
 #endif
