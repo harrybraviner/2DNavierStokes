@@ -22,6 +22,7 @@ void outputEnergy(struct Field *fld, double t, char *outfileName){
 			E += 2*(creal(fld->vy[IDX2D])*creal(fld->vy[IDX2D]) + cimag(fld->vy[IDX2D])*cimag(fld->vy[IDX2D]));
 		}
 	}
+	E *= 0.5;	// E = 0.5*u.u
 	fprintf(outfile, "%lf\t%lf\n", t, E);
 	fclose(outfile);
 }
