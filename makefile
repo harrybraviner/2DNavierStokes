@@ -11,4 +11,4 @@ src/computeAdvection.o: src/computeAdvection.c src/computeAdvection.h src/2DNavi
 	gcc -c src/computeAdvection.c -o src/computeAdvection.o
 
 src/output.o:	src/output.c src/output.h src/2DNavierStokes.h
-	gcc -c src/output.c -o src/output.o
+	gcc -c -Wall src/output.c -o src/output.o

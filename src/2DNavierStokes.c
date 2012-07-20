@@ -11,20 +11,31 @@
 int main(int argc, char *argv[]){
 	int i,j;	// Dummy counter variables, used in IDX2D
 	char *energyOutfile = "energy.dat";
+	char *velocityOutdir = "./velocityData/";
 
-	// FIXME - allocate memory for the field and build fftw plans
 	struct Field fld;
 	initialiseField(&fld);
-	// FIXME - call main loop
 
 	// Main loop - Forward Euler integration
 	double t = 0.0, dt = 1.0;
+	int velocityOutputNumber = 123;
+	double lastVelocityOutputT = 0.0;
 	double p_k;
 	struct Field dfld;	// delta-fld that we use for integration
 	initialiseField(&dfld);
+	// FIXME - think about replacing these with some kind of 'output structs' to handle things more transparrantly
 	initEnergyOutput(&fld, energyOutfile);
+	initVelocityOutput(velocityOutdir);
 	while(t < T_FINAL){
 		computeAdvection(&fld);
+
+		// FIXME - the outputVelocity function is not finished yet
+		// FIXME - this only seems to get called once, should get called multiple times
+		if(t - lastVelocityOutputT >= V_OUT_DELTA_T){
+			outputVelocity(&fld, velocityOutputNumber, t, velocityOutdir);
+			lastVelocityOutputT = t;
+			velocityOutputNumber++;
+		}
 	
 
 		// Subtract (u.grad)u

@@ -8,4 +8,6 @@
 
 #define T_FINAL	10
 
+#define V_OUT_DELTA_T 5.0	// Times interval between velocity outputs
+
 #endif
