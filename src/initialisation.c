@@ -31,7 +31,7 @@ void initialiseField(struct Field *fld){
 #if 1
 	i=1; j=0;
 	fld->vx[IDX2D] = -0.5*I;
-	i=NX-1; j=0;	// FIXME - This is causing a segfault - figure out why!
+	i=NX-1; j=0;
 	fld->vx[IDX2D] = +0.5*I;
 #endif
 	

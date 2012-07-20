@@ -1,8 +1,8 @@
 #ifndef __PROBLEM_H__
 #define __PROBLEM_H__
 
-#define	NX	64
-#define	NY	64
+#define	NX	8
+#define	NY	8
 
 #define	NU	1	//	Kinematic viscosity
 

@@ -20,7 +20,7 @@ int main(int argc, char *argv[]){
 	double t = 0.0, dt = 1.0;
 	int velocityOutputNumber = 1;
 	double lastVelocityOutputT = 0.0;
-	double p_k;
+	complex p_k;
 	struct Field dfld;	// delta-fld that we use for integration
 	initialiseField(&dfld);
 	// FIXME - think about replacing these with some kind of 'output structs' to handle things more transparrantly
@@ -38,11 +38,16 @@ int main(int argc, char *argv[]){
 		}
 	
 
+		/* Explicit integration */
+
 		// Subtract (u.grad)u
 		for(i=0; i<NX; i++){	// Loop over k_x
 			for(j=0; j<NY/2+1; j++){ // Loop over k_y
 				dfld.vx[IDX2D] = +I*(K_X*fld.Axx[IDX2D] + K_Y*fld.Axy[IDX2D]);
 				dfld.vy[IDX2D] = +I*(K_X*fld.Axy[IDX2D] + K_Y*fld.Ayy[IDX2D]);
+				//printf("%f",cabs(dfld.vx[IDX2D]));
+				//printf("%f",cabs(dfld.vy[IDX2D]));	// FIXME - this is churning out NANs!
+				printf("%f\t%f\t%f\n",fld.Axx[IDX2D],fld.Ayy[IDX2D],fld.Axy[IDX2D]);
 			}
 		}
 
@@ -56,6 +61,22 @@ int main(int argc, char *argv[]){
 				dfld.vy[IDX2D] += K_Y*p_k;
 			}
 		}
+#if 1
+		for(i=0; i<NTOTAL_COMPLEX; i++){
+				fld.vx[i] += dfld.vx[i];
+				fld.vy[i] += dfld.vy[i];
+		}
+#endif
+		/* End of explicit integration */
+
+		// Implicit integration for the viscous terms
+#if 0
+		for(i=0; i<NX; i++){	// Loop over k_x
+			f(j=0; j<NY/2+1; j++){	// Loop over k_y
+				
+			}
+		}
+#endif
 
 		outputEnergy(&fld, t, energyOutfile);
 
