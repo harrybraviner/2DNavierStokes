@@ -80,8 +80,8 @@ void outputVelocity(struct Field *fld, int N, double t, char *outdir){
 				fprintf(outfile, "%f\t%f\t%f\t%f\n",
 				(2*M_PI*i)/NX,
 				(2*M_PI*j)/NY,
-				((double*)fld->w1)[i+NY*j],
-				((double*)fld->w2)[i+NY*j]);
+				((double*)fld->w1)[i+(NY+2)*j],
+				((double*)fld->w2)[i+(NY+2)*j]);
 			}
 		}
 		fclose(outfile);

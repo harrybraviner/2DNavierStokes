@@ -18,7 +18,7 @@ int main(int argc, char *argv[]){
 
 	// Main loop - Forward Euler integration
 	double t = 0.0, dt = 1.0;
-	int velocityOutputNumber = 123;
+	int velocityOutputNumber = 1;
 	double lastVelocityOutputT = 0.0;
 	double p_k;
 	struct Field dfld;	// delta-fld that we use for integration
