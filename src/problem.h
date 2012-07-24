@@ -6,7 +6,7 @@
 
 #define	NU	1	//	Kinematic viscosity
 
-#define T_FINAL	10
+#define T_FINAL	2
 
 #define V_OUT_DELTA_T 1.0	// Times interval between velocity outputs
 
