@@ -10,6 +10,7 @@
 #include "problem.h"
 
 #define NTOTAL_COMPLEX	NX*(NY/2 + 1)	// number of complex points of data in Fourier space
+#define NTOTAL_REAL	NX*2*(NY/2 + 1)	// number of complex points of data in Fourier space
 #define IDX2D	i*(NY/2 + 1) + j
 #define K_X	i*M_PI
 #define K_Y	j*M_PI
