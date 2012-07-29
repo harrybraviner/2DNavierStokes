@@ -29,6 +29,10 @@ int main(int argc, char *argv[]){
 	while(t < T_FINAL){
 		computeAdvection(&fld);
 
+		dt = dtFromCFL(&fld);	// FIXME - this is currently producing ridiculously high dt's
+
+		printf("At time t = %f the timestep is dt = %f\n",t,dt);
+
 		if(t - lastVelocityOutputT >= V_OUT_DELTA_T){
 			outputVelocity(&fld, velocityOutputNumber, t, velocityOutdir);
 			lastVelocityOutputT = t;

@@ -10,4 +10,7 @@
 
 #define V_OUT_DELTA_T 1.0	// Times interval between velocity outputs
 
+#define CFL_PARAM	1.5
+#define CFL_SAFETY_PARAM 0.01
+
 #endif
