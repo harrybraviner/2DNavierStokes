@@ -17,7 +17,7 @@ int main(int argc, char *argv[]){
 	initialiseField(&fld);
 
 	// Main loop - Forward Euler integration
-	double t = 0.0, dt = 0.01;
+	double t = 0.0, dt = 0.0005;
 	int velocityOutputNumber = 1;
 	double lastVelocityOutputT = 0.0;
 	complex p_k;
@@ -26,10 +26,11 @@ int main(int argc, char *argv[]){
 	// FIXME - think about replacing these with some kind of 'output structs' to handle things more transparrantly
 	initEnergyOutput(&fld, energyOutfile);
 	initVelocityOutput(velocityOutdir);
+	outputEnergy(&fld, t, energyOutfile);
 	while(t < T_FINAL){
 		computeAdvection(&fld);
 
-		dt = dtFromCFL(&fld);	// FIXME - this is currently producing ridiculously high dt's
+		//dt = dtFromCFL(&fld);	// FIXME - this is currently producing ridiculously high dt's
 
 		printf("At time t = %f the timestep is dt = %f\n",t,dt);
 
@@ -75,7 +76,9 @@ int main(int argc, char *argv[]){
 		}
 
 		/* End of explicit integration */
-
+		// FIXME - I think the problem here is whether I regard all of the wavevector components as positive, or half as negative
+		// FIXME - currently this regards them all as positive, so half of the wavemodes I initialised get massively suppressed!
+#if 1
 		// Implicit integration for the viscous terms
 		for(i=0; i<NX; i++){	// Loop over k_x
 			for(j=0; j<NY/2+1; j++){	// Loop over k_y
@@ -84,11 +87,11 @@ int main(int argc, char *argv[]){
 				fld.vy[IDX2D] *= exp(-dt*NU*(K_X*K_X+K_Y*K_Y));
 			}
 		}
-
-
-		outputEnergy(&fld, t, energyOutfile);
+#endif
 
 		t += dt;
+
+		outputEnergy(&fld, t, energyOutfile);
 	}
 
 	return 0;

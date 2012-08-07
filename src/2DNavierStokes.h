@@ -12,8 +12,8 @@
 #define NTOTAL_COMPLEX	NX*(NY/2 + 1)	// number of complex points of data in Fourier space
 #define NTOTAL_REAL	NX*2*(NY/2 + 1)	// number of complex points of data in Fourier space
 #define IDX2D	i*(NY/2 + 1) + j
-#define K_X	i*M_PI
-#define K_Y	j*M_PI
+#define K_X	((i + NX/2)%NX - NX/2)*M_PI
+#define K_Y	((j + NY/2)%NY - NY/2)*M_PI
 
 struct Field {	// Structure holding pointers to velocity fields. Could be updated later with other variables
 	double complex *vx, *vy;	// Complex DFTs of the velocity components
