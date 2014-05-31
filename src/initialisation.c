@@ -24,11 +24,11 @@ void initialiseField(struct Field *fld){
 		}
 	}
 	// FIXME - implement proper initialisation
-#if 0
+#if 1
 	i=0; j=1;
 	fld->vx[IDX2D] = -0.5*I;
 #endif
-#if 1
+#if 0
 	i=1; j=0;
 	fld->vx[IDX2D] = -0.5*I;
 	i=NX-1; j=0;
